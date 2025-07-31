@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Aditi Mehra",
+    "profile_image": "/images/doctor1.jpg",
+    "availability_status": "Available",
+    "description": "Expert in general medicine for 10+ years.",
+    "specialization": ["General"]
+  },
+  {
+    "id": 2,
+    "name": "Dr. Rajesh Kumar",
+    "profile_image": "/images/doctor2.jpg",
+    "availability_status": "Booked",
+    "description": "Specializes in treating cardiac issues.",
+    "specialization": ["Heart"]
+  },
+  {
+    "id": 3,
+    "name": "Dr. Pooja Tomar",
+    "profile_image": "/images/doctor3.jpg",
+    "availability_status": "On Leave",
+    "description": "Dental surgeon with a passion for cosmetic dentistry.",
+    "specialization": ["Dental"]
+  },
+  {
+    "id": 4,
+    "name": "Dr. Vivek Sharma",
+    "profile_image": "/images/doctor4.jpg",
+    "availability_status": "Busy",
+    "description": "Dermatologist focusing on skin allergies and acne.",
+    "specialization": ["Skin"]
+  },
+  {
+    "id": 5,
+    "name": "Dr. Meenakshi Sinha",
+    "profile_image": "/images/doctor5.jpg",
+    "availability_status": "Available",
+    "description": "Expert ENT specialist for nose and throat conditions.",
+    "specialization": ["Nose"]
+  },
+  {
+    "id": 6,
+    "name": "Dr. Arjun Patel",
+    "profile_image": "/images/doctor6.jpg",
+    "availability_status": "Available",
+    "description": "Renowned neurologist, treating brain disorders.",
+    "specialization": ["Brain"]
+  },
+  {
+    "id": 7,
+    "name": "Dr. Priya Desai",
+    "profile_image": "/images/doctor7.jpg",
+    "availability_status": "Busy",
+    "description": "Skin, eye, and general physician.",
+    "specialization": ["Skin", "Eye", "General"]
+  },
+  {
+    "id": 8,
+    "name": "Dr. Harshit Tiwari",
+    "profile_image": "/images/doctor8.jpg",
+    "availability_status": "Available",
+    "description": "Eye surgeon, specialized in cataract operations.",
+    "specialization": ["Eye"]
+  },
+  {
+    "id": 9,
+    "name": "Dr. Anjali Ghosh",
+    "profile_image": "/images/doctor9.jpg",
+    "availability_status": "Booked",
+    "description": "Cardiologist & general physician.",
+    "specialization": ["Heart", "General"]
+  },
+  {
+    "id": 10,
+    "name": "Dr. Sanjay Dutt",
+    "profile_image": "/images/doctor10.jpg",
+    "availability_status": "On Leave",
+    "description": "ENT with an affinity for advanced nose surgeries.",
+    "specialization": ["Nose"]
+  },
+  {
+    "id": 11,
+    "name": "Dr. Tara Singh",
+    "profile_image": "/images/doctor11.jpg",
+    "availability_status": "Available",
+    "description": "Practicing as a pediatric & general doctor.",
+    "specialization": ["General"]
+  },
+  {
+    "id": 12,
+    "name": "Dr. Shubham Jha",
+    "profile_image": "/images/doctor12.jpg",
+    "availability_status": "Available",
+    "description": "Dermatologist with research in chronic skin conditions.",
+    "specialization": ["Skin"]
+  },
+  {
+    "id": 13,
+    "name": "Dr. Amar Singh",
+    "profile_image": "/images/doctor13.jpg",
+    "availability_status": "Busy",
+    "description": "Specialist in brain and nervous disorders.",
+    "specialization": ["Brain"]
+  },
+  {
+    "id": 14,
+    "name": "Dr. Kavita Malhotra",
+    "profile_image": "/images/doctor14.jpg",
+    "availability_status": "Available",
+    "description": "Dental & general medicine.",
+    "specialization": ["Dental", "General"]
+  },
+  {
+    "id": 15,
+    "name": "Dr. Rohit Sahu",
+    "profile_image": "/images/doctor15.jpg",
+    "availability_status": "Booked",
+    "description": "Cardiologist & dermatologist.",
+    "specialization": ["Heart", "Skin"]
+  },
+  {
+    "id": 16,
+    "name": "Dr. Rupali Mishra",
+    "profile_image": "/images/doctor16.jpg",
+    "availability_status": "Available",
+    "description": "Expert in dental implants and oral hygiene.",
+    "specialization": ["Dental"]
+  },
+  {
+    "id": 17,
+    "name": "Dr. Farhan Alam",
+    "profile_image": "/images/doctor17.jpg",
+    "availability_status": "Available",
+    "description": "ENT and general physician.",
+    "specialization": ["Nose", "General"]
+  },
+  {
+    "id": 18,
+    "name": "Dr. Shruti Das",
+    "profile_image": "/images/doctor18.jpg",
+    "availability_status": "Booked",
+    "description": "Skin and eye doctor.",
+    "specialization": ["Skin", "Eye"]
+  },
+  {
+    "id": 19,
+    "name": "Dr. Jayant Verma",
+    "profile_image": "/images/doctor19.jpg",
+    "availability_status": "On Leave",
+    "description": "Brain, general, and heart specialist.",
+    "specialization": ["Brain", "General", "Heart"]
+  },
+  {
+    "id": 20,
+    "name": "Dr. Sunita Patil",
+    "profile_image": "/images/doctor20.jpg",
+    "availability_status": "Available",
+    "description": "General practitioner with special focus on preventive care.",
+    "specialization": ["General"]
+  },
+  {
+    "id": 21,
+    "name": "Dr. Sameer Saxena",
+    "profile_image": "/images/doctor21.jpg",
+    "availability_status": "Busy",
+    "description": "Eye and dental specialist.",
+    "specialization": ["Eye", "Dental"]
+  }
+]
