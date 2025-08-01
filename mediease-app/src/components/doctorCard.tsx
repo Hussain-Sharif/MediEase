@@ -29,8 +29,9 @@ const SuperBookingButton = ({ className }) => (
   </div>
 )
 
+
 export const DoctorCard = ({ doctor }) => {
-  const profileImageAlter =
+  const profileImageAlter = doctor.profile_image ||
     'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d'
 
   return (
@@ -50,10 +51,10 @@ export const DoctorCard = ({ doctor }) => {
             />
           </figure>
         </CardHeader>
-        <CardContent className="w-full px-4 pb-6 space-y-3">
-          <div className="flex justify-between items-center w-full gap-4">
-            <h2 className="text-xl md:text-[1.35rem] font-extrabold text-cyan-900">{doctor.name}</h2>
-            <DoctorStatus currentStatus={doctor.availability_status} />
+        <CardContent className="w-full px-4 pb-6 pt-0 space-y-3">
+          <div className="flex flex-col justify-between items-center w-full gap-2 space-y-2">
+            <DoctorStatus className="self-end" currentStatus={doctor.availability_status} />
+            <h2 className="text-xl md:text-[1.35rem] font-extrabold self-start text-cyan-900 truncate">{doctor.name}</h2>
           </div>
           <p className="text-md text-gray-600 truncate">
             {doctor.description.slice(0, 30)}... <span className="text-cyan-600 hover:underline cursor-pointer">more</span>

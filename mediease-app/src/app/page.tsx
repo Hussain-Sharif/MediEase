@@ -16,7 +16,7 @@ export default function Home() {
         <h1 className="text-3xl font-bold underline">
           Mediease
         </h1>
-        <ul className="mt-4 p-2 w-full border  flex justify-center flex-wrap gap-4">
+        <ul className="mt-4 p-2 w-full border  flex justify-start flex-wrap gap-4">
           {
             currentDoctors.map((doctor:Doctor) => (
               

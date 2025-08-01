@@ -6,7 +6,7 @@ import { SparklesIcon, Stethoscope } from "lucide-react"
 
 
 export const DoctorStatus = (props) => {
-    const {currentStatus}=props
+    const {currentStatus,className}=props
     const [statusColor, setStatusColor]=useState<string>('bg-green-500')
 
     const decideStatusColor=()=>{
@@ -36,7 +36,7 @@ export const DoctorStatus = (props) => {
         
             <Badge
             variant={'default'}
-            className={`mb-3 ${statusColor} rounded-[14px] border-1 border-gray-600/10 text-white text-sm md:left-6`}
+            className={`mb-3 ${statusColor} rounded-[14px] border-1 border-gray-600/10 text-white text-sm md:left-6 ${className}`}
             >
             <Stethoscope size={20} className=" mr-1  text-gray-100 " />
                 {currentStatus}
