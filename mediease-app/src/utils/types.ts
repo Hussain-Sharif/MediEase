@@ -1,6 +1,13 @@
 // Doctor availability status enum
 export type DoctorAvailabilityStatus = 'Available' | 'Booked' | 'Busy' | 'On Leave';
 
+export enum AvailabilityStatus {
+    Available = "Available",
+    Busy = "Busy",
+    Booked = "Booked",
+    OnLeave = "On Leave"
+}
+
 // Doctor specialization type
 export type DoctorSpecialization = 
   | 'Dental'
