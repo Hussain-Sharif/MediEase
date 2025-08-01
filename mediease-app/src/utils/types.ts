@@ -18,6 +18,16 @@ export type DoctorSpecialization =
   | 'Brain'
   | 'Skin';
 
+export enum Specialization {
+    Dental = "Dental",
+    Eye = "Eye",
+    Nose = "Nose",
+    General = "General",
+    Heart = "Heart",
+    Brain = "Brain",
+    Skin = "Skin"
+}
+
 export interface Doctor {
   id: number;
   name: string;

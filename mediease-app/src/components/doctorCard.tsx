@@ -17,7 +17,7 @@ const SuperBookingButton = ({ className }) => (
     >
       <div className="flex items-center justify-center gap-1 px-4 py-2 rounded-full bg-white/10 ring-1 ring-cyan-300 transition group-hover:bg-cyan-700">
         <Globe className="mx-1 animate-spin text-cyan-200" />
-        <p className="font-semibold tracking-tight text-white">Book Now</p>
+        <p className="font-semibold tracking-tight text-white">Know More</p>
       </div>
       <div className="ml-2 flex items-center justify-center rounded-full border-2 border-cyan-700 transition group-hover:bg-cyan-800 bg-white/20">
         <ArrowRight
@@ -41,11 +41,12 @@ export const DoctorCard = ({ doctor }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.35 }}
     >
-      <Card className="bg-gradient-to-b from-white via-cyan-50 to-cyan-100 border-2 border-cyan-100 shadow-lg rounded-2xl flex flex-col items-center">
-        <CardHeader className="flex justify-center items-center mt-2 mb-3">
-          <figure className="w-[90px] h-[90px] md:w-[150px] md:h-[150px] opacity-80 overflow-hidden rounded-[1000px] border-[3px] border-solid border-cyan-600 aspect-[1/1] flex-none relative">
+      <Card className="m-0  bg-gradient-to-b from-white via-cyan-50 to-cyan-100 border-2 border-cyan-100 shadow-lg rounded-2xl flex flex-col gap-0 items-center">
+            <DoctorStatus className="self-end mr-2" currentStatus={doctor.availability_status} />
+        <CardHeader className="flex justify-center items-center  mb-3">
+          <figure className="w-[110px] h-[110px] md:w-[150px] md:h-[150px]  overflow-hidden rounded-[1000px] border-[3px] border-solid border-cyan-600 aspect-[1/1] flex-none relative">
             <img
-              className="transition duration-300 absolute top-0 inset-0 rounded-inherit object-cover z-50"
+              className="transition duration-300 absolute top-0 inset-0 rounded-inherit object-cover z-20"
               src={profileImageAlter}
               alt={doctor.name}
             />
@@ -53,7 +54,7 @@ export const DoctorCard = ({ doctor }) => {
         </CardHeader>
         <CardContent className="w-full px-4 pb-6 pt-0 space-y-3">
           <div className="flex flex-col justify-between items-center w-full gap-2 space-y-2">
-            <DoctorStatus className="self-end" currentStatus={doctor.availability_status} />
+            
             <h2 className="text-xl md:text-[1.35rem] font-extrabold self-start text-cyan-900 truncate">{doctor.name}</h2>
           </div>
           <p className="text-md text-gray-600 truncate">
