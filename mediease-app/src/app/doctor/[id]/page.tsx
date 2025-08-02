@@ -258,7 +258,7 @@ export default function DoctorDetailsPage() {
       toast.success(
         `Appointment booked with ${doctor!.name} on ${appointmentDate} at ${appointmentTime}!`, 
         {
-          duration: 2000,
+          duration: 3000,
           icon: '🎉'
         }
       )
@@ -270,7 +270,7 @@ export default function DoctorDetailsPage() {
       // Redirect after success
       setTimeout(() => {
         router.push('/allbookings')
-      }, 500)
+      }, 2000)
       
     } catch (error) {
       toast.error("Failed to book appointment. Please try again.")
