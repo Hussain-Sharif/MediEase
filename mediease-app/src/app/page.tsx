@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Header } from "@/components/header";
-import { AvailabilityStatus, Doctor, DoctorSpecialization } from "@/utils/types";
+import {  Doctor, DoctorSpecialization } from "@/utils/types";
 import { DoctorCard } from "@/components/doctorCard";
 import { TypewriterHero } from "@/components/ui/typewriter-hero";
 import { SpecializedTabs } from "@/components/TabsGroup";

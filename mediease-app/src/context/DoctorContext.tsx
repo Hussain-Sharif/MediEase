@@ -1,8 +1,11 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, { createContext, useContext, useState,  ReactNode } from 'react'
 import doctorDataArray from '@/utils/doctors.json'
 import { Doctor, AvailabilityStatus } from '@/utils/types'
+
+// Type assertion to match your Doctor interface
+const parsedDoctorArray: Doctor[] = doctorDataArray as Doctor[]
 
 interface DoctorContextType {
   doctors: Doctor[]
@@ -14,14 +17,7 @@ interface DoctorContextType {
 const DoctorContext = createContext<DoctorContextType | undefined>(undefined)
 
 export function DoctorProvider({ children }: { children: ReactNode }) {
-  const [doctors, setDoctors] = useState<Doctor[] | {
-    id: number;
-    name: string;
-    profile_image: string;
-    availability_status: string;
-    description: string;
-    specialization: string[];
-  }[]>(doctorDataArray)
+  const [doctors, setDoctors] = useState<Doctor[]>(parsedDoctorArray)
 
   const updateDoctorStatus = (doctorId: number, status: AvailabilityStatus) => {
     setDoctors(prev => prev.map(doctor => 
