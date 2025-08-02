@@ -14,7 +14,14 @@ interface DoctorContextType {
 const DoctorContext = createContext<DoctorContextType | undefined>(undefined)
 
 export function DoctorProvider({ children }: { children: ReactNode }) {
-  const [doctors, setDoctors] = useState<Doctor[]>(doctorDataArray)
+  const [doctors, setDoctors] = useState<Doctor[] | {
+    id: number;
+    name: string;
+    profile_image: string;
+    availability_status: string;
+    description: string;
+    specialization: string[];
+  }[]>(doctorDataArray)
 
   const updateDoctorStatus = (doctorId: number, status: AvailabilityStatus) => {
     setDoctors(prev => prev.map(doctor => 

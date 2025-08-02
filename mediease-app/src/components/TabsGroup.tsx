@@ -10,7 +10,10 @@ import { Badge } from "./ui/badge"
 
 
 
-export const SpecializedTabs=(props)=>{
+export const SpecializedTabs=(props:{
+    selectedSpec:{id:number,name:DoctorSpecialization}[],
+    handleSpecChange:(spec:{id:number,name:DoctorSpecialization})=>void
+})=>{
     const {selectedSpec,handleSpecChange}=props
     return(
         <Popover>
@@ -21,7 +24,7 @@ export const SpecializedTabs=(props)=>{
                     ? <>
                     <div className="flex flex-wrap items-center gap-2">
                         {
-                            selectedSpec.map((eachSpec) => <Badge className=" rounded-md bg-cyan-400" key={eachSpec.id}>
+                            selectedSpec.map((eachSpec: {id:number,name:DoctorSpecialization}) => <Badge className=" rounded-md bg-cyan-400" key={eachSpec.id}>
                         {eachSpec.name}
                     </Badge>)
                         }
@@ -39,7 +42,7 @@ export const SpecializedTabs=(props)=>{
                     <div key={eachSpec.id} className="flex items-center space-x-2">
                     <Checkbox
                         id={`${eachSpec.id}`}
-                        checked={selectedSpec.some((eachSelectedSpec) => eachSelectedSpec.id === eachSpec.id)}
+                        checked={selectedSpec.some((eachSelectedSpec:{id:number,name:DoctorSpecialization}) => eachSelectedSpec.id === eachSpec.id)}
                         onCheckedChange={() => handleSpecChange(eachSpec)}
                     />
                     <Label htmlFor={`${eachSpec.id}`}>{eachSpec.name}</Label>

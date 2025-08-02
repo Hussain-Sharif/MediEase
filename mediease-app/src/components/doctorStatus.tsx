@@ -6,7 +6,7 @@ import { SparklesIcon, Stethoscope } from "lucide-react"
 
 
 
-export const DoctorStatus = (props) => {
+export const DoctorStatus = (props:{className?:string,currentStatus:DoctorAvailabilityStatus|undefined}) => {
     const {currentStatus,className}=props
     const [statusColor, setStatusColor]=useState<string>('bg-green-500')
 

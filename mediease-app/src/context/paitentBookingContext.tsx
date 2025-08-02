@@ -20,7 +20,7 @@ export function PaitentBookingProvider({ children }: { children: ReactNode }) {
     }
 
     const getBookingById = (id: number) => {
-    return allBookings.find(eaechBooking => eaechBooking.doctor.id === id)
+    return allBookings.find(eaechBooking => eaechBooking?.doctor?.id === id)
   }
     console.log('current All Bookings',allBookings)
     return (

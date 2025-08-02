@@ -3,7 +3,7 @@ import { Textarea } from "./ui/textarea"
 import { Input } from "./ui/input"
 
 
-export const SearchTabs=(props)=>{
+export const SearchTabs=(props:{searchCards:string,handleUserSearchInput:(e:React.ChangeEvent<HTMLInputElement>)=>void})=>{
     const {searchCards,handleUserSearchInput}=props
 
     return(

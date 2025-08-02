@@ -6,10 +6,11 @@ import { Button } from './ui/button'
 import { ArrowRight, Eye } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { Doctor } from '@/utils/types'
 
-export const DoctorCard = (props) => {
+export const DoctorCard = (props:{doctor:Doctor|undefined}) => {
   const { doctor } = props
-  const profileImageAlter = doctor.profile_image ||
+  const profileImageAlter = doctor?.profile_image ||
     'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d'
 
   return (
@@ -20,13 +21,13 @@ export const DoctorCard = (props) => {
       transition={{ duration: 0.35 }}
     >
       <Card className="m-0 bg-gradient-to-b from-white via-cyan-50 to-cyan-100 border-2 border-cyan-100 shadow-lg rounded-2xl flex flex-col gap-0 items-center hover:shadow-xl transition-shadow duration-300">
-        <DoctorStatus className="self-end mr-2" currentStatus={doctor.availability_status} />
+        <DoctorStatus className="self-end mr-2" currentStatus={doctor?.availability_status} />
         <CardHeader className="flex justify-center items-center mb-3">
           <figure className="w-[110px] h-[110px] md:w-[150px] md:h-[150px] overflow-hidden rounded-[1000px] border-[3px] border-solid border-cyan-600  flex-none relative">
             <img
               className=" w-full h-full  object-cover z-10"
               src={profileImageAlter}
-              alt={doctor.name}
+              alt={doctor?.name}
             />
           </figure>
           {/* <figure className="w-32 h-32 md:w-40 md:h-40 overflow-hidden rounded-full border-4 border-white shadow-lg">
@@ -39,14 +40,14 @@ export const DoctorCard = (props) => {
         </CardHeader>
         <CardContent className="w-full px-4 pb-6 pt-0 space-y-3">
           <div className="flex flex-col justify-between items-center w-full gap-2 space-y-2">
-            <h2 className="text-xl md:text-[1.35rem] font-extrabold self-start text-cyan-900 truncate">{doctor.name}</h2>
+            <h2 className="text-xl md:text-[1.35rem] font-extrabold self-start text-cyan-900 truncate">{doctor?.name}</h2>
           </div>
           <p className="text-md text-gray-600 truncate">
-            {doctor.description.slice(0, 30)}...
+            {doctor?.description.slice(0, 30)}...
           </p>
           <div className="flex flex-col gap-2 mt-1">
             <div className="flex flex-wrap gap-2">
-              {doctor.specialization.map((each) => (
+              {doctor?.specialization.map((each) => (
                 <Badge
                   className="bg-cyan-800/90 ring-2 ring-cyan-200 text-white text-xs font-semibold shadow"
                   key={each}
@@ -57,7 +58,7 @@ export const DoctorCard = (props) => {
             </div>
             
             {/*  Navigation Button for details of Corresponding Doctor */}
-            <Link href={`/doctor/${doctor.id}`} className="mt-3 ">
+            <Link href={`/doctor/${doctor?.id}`} className="mt-3 ">
               
                 <Button
                 className={cn(
