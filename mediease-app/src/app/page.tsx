@@ -2,57 +2,66 @@
 
 import React, { useEffect, useState } from "react";
 import { Header } from "@/components/header";
-import doctorDataArray from "../utils/doctors.json"
-import { Doctor, DoctorSpecialization } from "@/utils/types";
+import { AvailabilityStatus, Doctor, DoctorSpecialization } from "@/utils/types";
 import { DoctorCard } from "@/components/doctorCard";
 import { TypewriterHero } from "@/components/ui/typewriter-hero";
 import { SpecializedTabs } from "@/components/TabsGroup";
 import { SearchTabs } from "@/components/searchTab";
+import { useDoctors } from "@/context/DoctorContext";
 
 export default function Home() {
+
+  const { doctors } = useDoctors();
+  
   const [currentDoctors, setCurrentDoctors] = useState<Doctor[]>([]);
   const [selectedSpec,setSelectedSpec] = useState<{id:number,name:DoctorSpecialization}[]>([])
   const [searchCards,setSearchCards] = useState<string>('')
 
+  // Initialize currentDoctors with context data
+  useEffect(() => {
+    setCurrentDoctors(doctors);
+  }, [doctors]);
+
+  // Handling the User specilization change of a Doctor while filtering the cards
   const handleSpecChange = (userSelectedSpec:{id:number,name:DoctorSpecialization}) => {
-   setSelectedSpec(prev=>prev.some(eachSpec=>eachSpec.id === userSelectedSpec.id)  // If present already remove it else add it 
+   setSelectedSpec(prev=>prev.some(eachSpec=>eachSpec.id === userSelectedSpec.id)  
    ? prev.filter(eachSpec=>eachSpec.id !== userSelectedSpec.id) : [...prev,userSelectedSpec]); 
   };
 
   useEffect(()=>{ // useEffect for specialization Tabs/Options
     if(selectedSpec.length===0){
-      setCurrentDoctors(doctorDataArray)
+      setCurrentDoctors(doctors)
     }else{
-      const filteredDoctors = currentDoctors.filter((doctor: Doctor) =>{
+      const filteredDoctors = doctors.filter((doctor: Doctor) =>{ // NEW: Filter from context
         return doctor.specialization.some((doctorEachSpec:DoctorSpecialization)=>{
           return selectedSpec.some(eachSelectedSpec => eachSelectedSpec.name === doctorEachSpec)
         })
       });
       setCurrentDoctors(filteredDoctors);
     }
-  },[selectedSpec])
+  },[selectedSpec, doctors]) 
 
+  // Handling the User searching for a Doctor
   const handleUserSearchInput=(e:React.ChangeEvent<HTMLInputElement>)=>{
      setSearchCards(e.target.value)
   }
 
   useEffect(()=>{ // useEffect for search
     if(!searchCards){
-      setCurrentDoctors(doctorDataArray)
+      setCurrentDoctors(doctors)
     }else{
-      const filteredDoctors = currentDoctors.filter((doctor: Doctor) => {
+      const filteredDoctors = doctors.filter((doctor: Doctor) => { // NEW: Filter from context
         return doctor.name.toLowerCase().includes(searchCards.toLowerCase())  || doctor.description.toLowerCase().includes(searchCards.toLowerCase())
       });
       setCurrentDoctors(filteredDoctors);
     }
-  },[searchCards])
-
+  },[searchCards, doctors])
 
   return (
     <>
     <Header/>
     <main className="mt-16 min-h-screen">
-        <div className="z-30  h-fit flex flex-col jutify-center items-center w-full bg-background">
+        <div className="z-30 h-fit flex flex-col jutify-center items-center w-full bg-background">
           <TypewriterHero
             title="Book your appointment now! Specialized in"
             description="Find your doctor that best suits you."
@@ -70,15 +79,13 @@ export default function Home() {
             <SpecializedTabs selectedSpec={selectedSpec} handleSpecChange={handleSpecChange}/>
           </div>
         </div>
-
-          
-
-
-          <ul className="p-2 mt-8 w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-content-center gap-4">
+          <ul className="p-2 mt-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-content-center gap-4">
             {
-              currentDoctors.map((doctor:Doctor) => (
-                
-                <DoctorCard  key={doctor.id} doctor={doctor}/>
+              currentDoctors.map((doctor: Doctor) => (
+                <DoctorCard  
+                  key={doctor.id} 
+                  doctor={doctor}
+                />
               ))
             }
           </ul>
@@ -89,11 +96,10 @@ export default function Home() {
               &&
               <div>
                 <h1 className="text-center text-2xl font-bold text-black">No Doctors Found</h1>
-                <p className="text-center text-md  text-gray-600">Please Try Again</p>
+                <p className="text-center text-md text-gray-600">Please Try Again</p>
               </div>
             }
           </div>
-       
     </main>
     </>
   );

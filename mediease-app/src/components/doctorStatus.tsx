@@ -1,3 +1,4 @@
+"use client"
 import { AvailabilityStatus, DoctorAvailabilityStatus } from "@/utils/types"
 import { useEffect, useState } from "react"
 import { Badge } from "./ui/badge"
