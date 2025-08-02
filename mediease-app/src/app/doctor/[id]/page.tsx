@@ -14,6 +14,8 @@ import { useDoctors } from '@/context/DoctorContext'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { usePaitentBooking } from '@/context/paitentBookingContext'
 
 export default function DoctorDetailsPage() {
   const params = useParams()
@@ -43,6 +45,13 @@ export default function DoctorDetailsPage() {
   // Using context 
   const { getDoctorById, bookDoctor } = useDoctors()
   const doctor = getDoctorById(parseInt(params.id as string))
+  let extraDoctorUserInfo=null
+
+  const {getBookingById, updateAllBookings}=usePaitentBooking()
+  if(doctor?.availability_status === AvailabilityStatus.Booked){
+      extraDoctorUserInfo=getBookingById(doctor.id)?.user
+  }
+  
 
   useEffect(() => {
     setIsLoading(false)
@@ -97,7 +106,7 @@ export default function DoctorDetailsPage() {
       return "Appointment date cannot be in the past"
     }
     
-    // Optional: Limit to next 30 days
+    // Limiting availability to next 30 days
     const maxDate = new Date()
     maxDate.setDate(maxDate.getDate() + 30)
     if (selectedDate > maxDate) {
@@ -160,8 +169,8 @@ export default function DoctorDetailsPage() {
     }
   }
 
-  const handleTimeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value
+  const handleTimeChange = (value) => {
+    
     setAppointmentTime(value)
     setErrors(prev => ({ ...prev, appointmentTime: validateTime(value) }))
   }
@@ -227,10 +236,23 @@ export default function DoctorDetailsPage() {
         doctorName: doctor!.name
       }
       
-      console.log("Booking data:", appointmentData)
+    //   console.log("Booking data:", appointmentData)
       
       // Book the doctor using context
       bookDoctor(doctor!.id)
+
+      //Final Booking Submission:
+      const finalSubmit={
+        user:{
+            name:appointmentData.patientName,
+            email:appointmentData.patientEmail,
+            phone:appointmentData.patientPhone,
+            appointmentDate:appointmentData.appointmentDate,
+            appointmentTime:appointmentData.appointmentTime,
+        },
+        doctor:{...doctor!, availability_status:AvailabilityStatus.Booked}
+      }
+      updateAllBookings(finalSubmit)
       
       // Success feedback with appointment details
       toast.success(
@@ -247,7 +269,7 @@ export default function DoctorDetailsPage() {
       
       // Redirect after success
       setTimeout(() => {
-        router.push('/')
+        router.push('/allbookings')
       }, 2000)
       
     } catch (error) {
@@ -369,18 +391,34 @@ export default function DoctorDetailsPage() {
                       <span className="text-gray-600">Available Mon-Fri, 9 AM - 6 PM</span>
                     </div>
                     
-                    <div className="pt-4">
+                    <div className="pt-4 ">
                       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                         <DialogTrigger asChild>
                           <Button
                             disabled={doctor.availability_status !== AvailabilityStatus.Available}
-                            className="w-full bg-gradient-to-r from-cyan-800 via-cyan-700 to-cyan-600 hover:from-cyan-700 hover:via-cyan-600 hover:to-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed h-12 text-lg font-semibold shadow-lg"
-                          >
-                            {doctor.availability_status === AvailabilityStatus.Available 
-                              ? 'Book Appointment' 
-                              : `Doctor is ${doctor.availability_status}`
-                            }
-                          </Button>
+                            className="
+                                flex items-center justify-center
+                                w-full min-h-[48px] h-auto
+                                px-4 py-3
+                                bg-gradient-to-r from-cyan-800 via-cyan-700 to-cyan-600 
+                                hover:from-cyan-700 hover:via-cyan-600 hover:to-cyan-500 
+                                disabled:opacity-50 disabled:cursor-not-allowed 
+                                text-sm font-semibold shadow-lg
+                                text-center leading-tight
+                                whitespace-normal break-words
+                                rounded-md
+                            "
+                            >
+                            <span className="block w-full text-center">
+                                {doctor.availability_status === AvailabilityStatus.Available 
+                                ? `Book Appointment` 
+                                : doctor.availability_status === AvailabilityStatus.Booked ? 
+                                    `Your appointment is scheduled on ${extraDoctorUserInfo?.appointmentDate} at ${extraDoctorUserInfo?.appointmentTime}`
+                                    : `Doctor is ${doctor.availability_status}`
+                                }
+                            </span>
+                            </Button>
+
                         </DialogTrigger>
                         
                         <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
@@ -455,7 +493,7 @@ export default function DoctorDetailsPage() {
                                     min={getTodayDate()}
                                     value={appointmentDate}
                                     onChange={handleDateChange}
-                                    className={errors.appointmentDate ? "border-red-500 focus:border-red-500" : ""}
+                                    className={errors.appointmentDate ? " border-red-500 focus:border-red-500" : "cursor-pointer"}
                                   />
                                   {errors.appointmentDate && (
                                     <p className="text-sm text-red-500">{errors.appointmentDate}</p>
@@ -468,21 +506,27 @@ export default function DoctorDetailsPage() {
                                     <Clock size={16} />
                                     Appointment Time *
                                   </Label>
-                                  <select
+                                  <Select
                                     id="time"
                                     value={appointmentTime}
-                                    onChange={handleTimeChange}
+                                    onValueChange={handleTimeChange}
                                     className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
                                       errors.appointmentTime ? "border-red-500 focus:border-red-500" : ""
                                     }`}
                                   >
-                                    <option value="">Select time</option>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select time" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        
                                     {getAvailableTimeSlots().map((timeSlot) => (
-                                      <option key={timeSlot} value={timeSlot}>
+                                      <SelectItem key={timeSlot} value={timeSlot}>
                                         {timeSlot}
-                                      </option>
+                                      </SelectItem>
                                     ))}
-                                  </select>
+                                    </SelectContent>
+                                    
+                                  </Select>
                                   {errors.appointmentTime && (
                                     <p className="text-sm text-red-500">{errors.appointmentTime}</p>
                                   )}
@@ -536,7 +580,7 @@ export default function DoctorDetailsPage() {
                     {/* Status Messages */}
                     {doctor.availability_status === AvailabilityStatus.Booked ? (
                       <p className="text-sm text-cyan-600 text-center">
-                        This doctor is booked by your appointment.
+                        You made an Appointment booking with this doctor.
                       </p>
                     ) : (
                       doctor.availability_status !== AvailabilityStatus.Available ? (

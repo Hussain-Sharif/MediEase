@@ -39,9 +39,14 @@ export interface Doctor {
 
 // Patient type for booking form
 export interface Patient {
-  id: number;
   name: string;
   email: string;
   phone: string;
-  booking_date: string; // ISO-formatted date string
+  appointmentDate: string; 
+  appointmentTime: string;
+}
+
+export interface Bookings{
+  user:Patient,
+  doctor:Doctor|undefined
 }

@@ -11,7 +11,7 @@
     "id": 2,
     "name": "Dr. Rajesh Kumar",
     "profile_image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80",
-    "availability_status": "Booked",
+    "availability_status": "Available",
     "description": "Specializes in treating cardiac issues.",
     "specialization": ["Heart"]
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "name": "Dr. Anjali Ghosh",
     "profile_image": "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=400&q=80",
-    "availability_status": "Booked",
+    "availability_status": "Available",
     "description": "Cardiologist & general physician.",
     "specialization": ["Heart", "General"]
   },
@@ -115,7 +115,7 @@
     "id": 15,
     "name": "Dr. Rohit Sahu",
     "profile_image": "https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?auto=format&fit=crop&w=400&q=80",
-    "availability_status": "Booked",
+    "availability_status": "Busy",
     "description": "Cardiologist & dermatologist.",
     "specialization": ["Heart", "Skin"]
   },
@@ -139,7 +139,7 @@
     "id": 18,
     "name": "Dr. Shruti Das",
     "profile_image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
-    "availability_status": "Booked",
+    "availability_status": "Available",
     "description": "Skin and eye doctor.",
     "specialization": ["Skin", "Eye"]
   },

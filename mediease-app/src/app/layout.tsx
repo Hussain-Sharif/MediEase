@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css"
 import { DoctorProvider } from "../context/DoctorContext";
+import { PaitentBookingProvider } from "@/context/paitentBookingContext";
 
 
 
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <DoctorProvider>
-          {children}
+          <PaitentBookingProvider>
+            {children}
+          </PaitentBookingProvider>
         </DoctorProvider>
       </body>
     </html>
