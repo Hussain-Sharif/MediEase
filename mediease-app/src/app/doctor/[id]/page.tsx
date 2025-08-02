@@ -169,7 +169,7 @@ export default function DoctorDetailsPage() {
     }
   }
 
-  const handleTimeChange = (value) => {
+  const handleTimeChange = (value: string) => {
     
     setAppointmentTime(value)
     setErrors(prev => ({ ...prev, appointmentTime: validateTime(value) }))
@@ -258,7 +258,7 @@ export default function DoctorDetailsPage() {
       toast.success(
         `Appointment booked with ${doctor!.name} on ${appointmentDate} at ${appointmentTime}!`, 
         {
-          duration: 4000,
+          duration: 2000,
           icon: '🎉'
         }
       )
@@ -270,7 +270,7 @@ export default function DoctorDetailsPage() {
       // Redirect after success
       setTimeout(() => {
         router.push('/allbookings')
-      }, 2000)
+      }, 500)
       
     } catch (error) {
       toast.error("Failed to book appointment. Please try again.")
@@ -507,12 +507,10 @@ export default function DoctorDetailsPage() {
                                     Appointment Time *
                                   </Label>
                                   <Select
-                                    id="time"
+                                 
+                                 
                                     value={appointmentTime}
                                     onValueChange={handleTimeChange}
-                                    className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
-                                      errors.appointmentTime ? "border-red-500 focus:border-red-500" : ""
-                                    }`}
                                   >
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select time" />
